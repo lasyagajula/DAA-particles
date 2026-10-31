@@ -1,0 +1,34 @@
+INF = 9999999
+
+V = 5
+
+G = [
+    [0, 2, 0, 6, 0],
+    [2, 0, 3, 8, 5],
+    [0, 3, 0, 0, 7],
+    [6, 8, 0, 0, 9],
+    [0, 5, 7, 9, 0]
+]
+
+selected = [False] * V
+
+selected[0] = True
+
+print("Edge : Weight")
+
+for i in range(V - 1):
+    minimum = INF
+    x = 0
+    y = 0
+
+    for j in range(V):
+        if selected[j]:
+            for k in range(V):
+                if not selected[k] and G[j][k]:
+                    if minimum > G[j][k]:
+                        minimum = G[j][k]
+                        x = j
+                        y = k
+
+    print(x, "-", y, ":", G[x][y])
+    selected[y] = True
